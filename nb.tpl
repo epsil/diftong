@@ -1,0 +1,150 @@
+{$declaration}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nb">
+<head>
+<title>Diftongmaskinen</title>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Diftongmaskinen<br />
+<small>Kilden til et klangfullt språk</small></h1>
+
+<p>Diftongmaskinen er et redskap som kjapt lar deg oversette små
+eller store mengder tekst på bokmål, nynorsk, riksmål eller
+høgnorsk til feilfri <a href="#anorsk"
+title="Hva er alternativ norsk?">alternativ norsk</a>. Veien til et
+klangfullt språk har aldri vært kortere!</p>
+
+{if $translation}
+<blockquote class="oversettelse">
+<p>{$translation}</p>
+</blockquote>
+{/if}
+
+<form action="{$uri}" method="post">
+<p><textarea cols="72" name="tekst" rows="5"
+title="Skriv eller lim inn teksten du ønsker å oversette her">{$input}</textarea></p>
+
+<p><input title="Oversett teksten til alternativ norsk"
+type="submit" value="Oversett" /></p>
+</form>
+
+<h2 id="anorsk">Hva er alternativ norsk?</h2>
+
+<p>Alternativ norsk er en uoffisiell målform som tar sikte på å
+etablere et mer klangfullt og vakrere norsk. Dette gjøres ved å
+bytte ut alle enkeltvokaler med diftonger, noe som ikke bare gir en
+meget distinkt uttale, men som også minsker avstanden mellom det
+skriftlige og det muntlige. I alternativ norsk er alle vokaler entydige, til forskjell fra <abbr
+title="blant annet">bl.a.</abbr> bokmål, hvor <abbr
+title="for eksempel">f.eks.</abbr> <em>o</em>-en i «hvor» uttales
+<em>/o/</em>, mens den i «lov» uttales <em>/å/</em>.</p>
+
+<p>Alternativ norsk bygger videre på eldre målformer, både
+offisielle og uoffiselle. Man kan skrive alternativ norsk med
+utgangspunkt i bokmål og nynorsk (offisielle) så vel som riksmål og
+høgnorsk (uoffisielle). Takket være denne inkluderende holdningen
+til norsk språk er alternativ norsk både ordrikt og nyansert.</p>
+
+<p>Det er lett å skrive alternativ norsk, selv om målformen
+revideres jevnlig. For øyeblikket gjelder følgende regler:</p>
+
+<ol>
+<li>
+<p>Bytt ut enkeltstående <em>a</em>-er og <em>æ</em>-er med
+<em>åi</em>.</p>
+
+<blockquote>
+<p>Han har tæl.</p>
+</blockquote>
+
+<blockquote>
+<p>Håin håir tåil.</p>
+</blockquote>
+</li>
+
+<li>
+<ol>
+<li>
+<p>Bytt ut enkeltstående <em>e</em>-er og <em>i</em>-er med
+<em>ei</em>.</p>
+
+<blockquote>
+<p>Det er veldig lett.</p>
+</blockquote>
+
+<blockquote>
+<p>Deit eir veildeig leitt.</p>
+</blockquote>
+</li>
+
+<li>
+<p>Dersom <em>e</em>-stavelsen er den første av to eller flere
+<em>e</em>-stavelser, skal <em>e</em>-en byttes ut med
+<em>øy</em>.</p>
+
+<blockquote>
+<p>Dette er lett.</p>
+</blockquote>
+
+<blockquote>
+<p>Døyttei eir leitt.</p>
+</blockquote>
+</li>
+</ol>
+</li>
+
+<li>
+<p>Bytt ut enkeltstående <em>o</em>-er og <em>u</em>-er med
+<em>ou</em>.</p>
+
+<blockquote>
+<p>Lutefisk er vondt.</p>
+</blockquote>
+
+<blockquote>
+<p>Louteifeisk eir voundt.</p>
+</blockquote>
+</li>
+
+<li>
+<p>Bytt ut enkeltstående <em>y</em>-er med <em>øy</em>.</p>
+
+<blockquote>
+<p>Siste nytt.</p>
+</blockquote>
+
+<blockquote>
+<p>Seistei nøytt.</p>
+</blockquote>
+</li>
+
+<li>
+<p>Bytt ut enkeltstående <em>å</em>-er med <em>ao</em>.</p>
+
+<blockquote>
+<p>Gå på!</p>
+</blockquote>
+
+<blockquote>
+<p>Gao pao!</p>
+</blockquote>
+</li>
+
+<li>
+<p>Dersom vokalen som byttes ut har aksent (eller et annet
+diakritisk tegn, som cirkumfleks eller tødler), og inngår i
+diftongen den byttes ut med, skal aksenten beholdes.</p>
+
+<blockquote>
+<p>Jeg har en idé.</p>
+</blockquote>
+
+<blockquote>
+<p>Jeig håir ein eidéi.</p>
+</blockquote>
+</li>
+</ol>
+</body>
+</html>
