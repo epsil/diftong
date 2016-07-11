@@ -1,4 +1,28 @@
-/* global angular */
+/* global angular, $ */
+
+var vocals = {}
+vocals['a'] = 'aàá'
+vocals['e'] = 'eèéê'
+vocals['i'] = 'i'
+vocals['o'] = 'oòóô'
+vocals['u'] = 'uü'
+vocals['y'] = 'y'
+vocals['æ'] = 'æ'
+vocals['ø'] = 'ø'
+vocals['å'] = 'å'
+
+// Finner enkeltstående vokaler
+function single (vocal, extension) {
+  var othervocals = $.extend({}, vocals)
+
+  if (extension) {
+    othervocals[vocal] = ''
+  }
+
+  return '(^|[^' + Object.values(othervocals).join('') + '])' +
+    '([' + vocals[vocal] + '])' +
+    '($|[^' + Object.values(vocals).join('') + '])'
+}
 
 // Code defining custom module consisting of a filter
 // The module needs to be included as dependency for using the filter, titlecase

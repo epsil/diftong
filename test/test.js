@@ -1,9 +1,8 @@
 /* global describe, it */
 describe('filter.js', function () {
-  describe('Example', function () {
-    it('should verify that a string is a string', function () {
-      var str = ''
-      str.should.be.a('string')
+  describe('single()', function () {
+    it('should produce regexp for matching single vocal', function () {
+      single('o', false).should.equal('(^|[^aàáeèéêioòóôuüyæøå])([oòóô])($|[^aàáeèéêioòóôuüyæøå])')
     })
   })
 })
