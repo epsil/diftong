@@ -1,5 +1,5 @@
 /* global describe, it */
-describe('filter.js', function () {
+describe('diftong.js', function () {
   describe('single()', function () {
     it('should produce regexp for matching single vocal', function () {
       single('e', false).should.equal('(^|[^aàáeèéêioòóôuüyæøå])([eèéê])($|[^aàáeèéêioòóôuüyæøå])')

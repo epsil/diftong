@@ -8,7 +8,7 @@
   "scripts": {
     "start": "start index.html",
     "test": "npm run spec && npm run lint",
-    "lint": "jshint filter.js test/test.js && standard filter.js test/test.js",
+    "lint": "jshint diftong.js test/test.js && standard diftong.js test/test.js",
     "spec": "start test/index.html",
     "commit": "npm run lint && git commit -a",
     "amend": "npm run lint && git commit -a --amend"
