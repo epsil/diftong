@@ -19,10 +19,124 @@ function single (vocal, extension) {
     othervocals[vocal] = ''
   }
 
-  return '(^|[^' + Object.values(othervocals).join('') + '])' +
+  return '(^|\\s+|[^' + Object.values(othervocals).join('') + '])' +
     '([' + vocals[vocal] + '])' +
     '($|[^' + Object.values(vocals).join('') + '])'
 }
+
+function ucfirst(str) {
+  if (str === '') {
+    return str
+  }
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+// Case-matching
+function capitalize(match, replacement) {
+  if (match !== match.toLowerCase()) {
+    return ucfirst(replacement.toLowerCase())
+  }
+  else {
+    return replacement
+  }
+}
+
+function htmlspecialchars (str) {
+  return $('<div>').text(str).html()
+}
+
+// HTML-optimisering
+function htmlize (str) {
+  return htmlspecialchars(str.trim())
+}
+
+function nl2br (str) {
+  return str.replace(/\n/g, '<br>');
+}
+
+function paragraphize(str) {
+  str = nl2br(str)
+  str = str.replace(/<br>\s*(<br>\s*)+/g, '</p><p>')
+  return '<p>' + str + '</p>'
+}
+
+function translate (str) {
+  // A
+  str = str.replace(new RegExp(single('a', false), 'gi'),
+                    function (match, p1, p2, p3, offset, string) {
+                      return p1 + capitalize(p2, 'åi') + p3
+                    })
+
+  // E
+  str = str.replace(new RegExp(single('e', false), 'gi'),
+                    function (match, p1, p2, p3, offset, string) {
+                      return p1 + capitalize(p2, p2 + 'i') + p3
+                    })
+
+// $search[] = '/(\b|(?<!ei)(?:[-bcdfghjklmnpqrstvwxz]+))(ei)'
+//   . '((?:[bcdfghjklmnpqrstvwxz]+ei)+)/ie';
+// $replace[] = "'\\1' . capitalize('\\2', 'øy') . '\\3'";
+  // str = str.replace(/(\b|(<!ei)(?[-bcdfghjklmnpqrstvwxz]+))(ei)((?[bcdfghjklmnpqrstvwxz]+ei)+)/gi,
+  //                   function (match, p1, p2, p3, offset, string) {
+  //                     return p1 + capitalize(p2, 'øy') + p3
+  //                   })
+
+  // I
+  str = str.replace(new RegExp(single('i', false), 'gi'),
+                    function (match, p1, p2, p3, offset, string) {
+                      return p1 + capitalize(p2, 'e' + p2) + p3
+                    })
+
+  // O
+  str = str.replace(new RegExp(single('o', false), 'gi'),
+                    function (match, p1, p2, p3, offset, string) {
+                      return p1 + capitalize(p2, p2 + 'u') + p3
+                    })
+
+  // U
+  str = str.replace(new RegExp(single('u', false), 'gi'),
+                    function (match, p1, p2, p3, offset, string) {
+                      return p1 + capitalize(p2, 'o' + p2) + p3
+                    })
+
+  // Y
+  str = str.replace(new RegExp(single('y', true), 'gi'),
+                    function (match, p1, p2, p3, offset, string) {
+                      return p1 + capitalize(p2, 'ø' + p2) + p3
+                    })
+
+  // Æ
+  str = str.replace(new RegExp(single('æ', false), 'gi'),
+                    function (match, p1, p2, p3, offset, string) {
+                      return p1 + capitalize(p2, 'åi') + p3
+                    })
+
+  // Ø
+  str = str.replace(new RegExp(single('ø', false), 'gi'),
+                    function (match, p1, p2, p3, offset, string) {
+                      return p1 + capitalize(p2, 'au') + p3
+                    })
+
+  // Å
+  str = str.replace(new RegExp(single('å', false), 'gi'),
+                    function (match, p1, p2, p3, offset, string) {
+                      return p1 + capitalize(p2, 'ao') + p3
+                    })
+
+  return str
+}
+
+// function escapeHtml(text) {
+//   var map = {
+//     '&': '&amp;',
+//     '<': '&lt;',
+//     '>': '&gt;',
+//     '"': '&quot;',
+//     "'": '&#039;'
+//   };
+
+//   return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+// }
 
 // Code defining custom module consisting of a filter
 // The module needs to be included as dependency for using the filter, titlecase
@@ -30,7 +144,8 @@ angular.module('CustomFilterModule', [])
   .filter('titlecase', function () {
     return function (input) {
       return input.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+        // return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+        return translate(txt)
       })
     }
   })
