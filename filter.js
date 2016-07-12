@@ -19,7 +19,7 @@ function single (vocal, extension) {
     othervocals[vocal] = ''
   }
 
-  return '(^|\\s+|[^' + Object.values(othervocals).join('') + '])' +
+  return '(^|[^' + Object.values(othervocals).join('') + '])' +
     '([' + vocals[vocal] + '])' +
     '($|[^' + Object.values(vocals).join('') + '])'
 }
@@ -73,13 +73,10 @@ function translate (str) {
                       return p1 + capitalize(p2, p2 + 'i') + p3
                     })
 
-// $search[] = '/(\b|(?<!ei)(?:[-bcdfghjklmnpqrstvwxz]+))(ei)'
-//   . '((?:[bcdfghjklmnpqrstvwxz]+ei)+)/ie';
-// $replace[] = "'\\1' . capitalize('\\2', 'øy') . '\\3'";
-  // str = str.replace(/(\b|(<!ei)(?[-bcdfghjklmnpqrstvwxz]+))(ei)((?[bcdfghjklmnpqrstvwxz]+ei)+)/gi,
-  //                   function (match, p1, p2, p3, offset, string) {
-  //                     return p1 + capitalize(p2, 'øy') + p3
-  //                   })
+  str = str.replace(/([-bcdfghjklmnpqrstvwxz]+)(ei)((?:[bcdfghjklmnpqrstvwxz]+ei)+)/gi,
+                    function (match, p1, p2, p3, offset, string) {
+                      return p1 + capitalize(p2, 'øy') + p3
+                    })
 
   // I
   str = str.replace(new RegExp(single('i', false), 'gi'),
