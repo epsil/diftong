@@ -11,6 +11,14 @@ vocals['æ'] = 'æ'
 vocals['ø'] = 'ø'
 vocals['å'] = 'å'
 
+function values (map) {
+  var vals = new Array()
+  for (var key in map) {
+    vals.push(map[key])
+  }
+  return vals
+}
+
 // Finner enkeltstående vokaler
 function single (vocal, extension) {
   var othervocals = $.extend({}, vocals)
@@ -19,9 +27,9 @@ function single (vocal, extension) {
     othervocals[vocal] = ''
   }
 
-  return '(^|[^' + Object.values(othervocals).join('') + '])' +
+  return '(^|[^' + values(othervocals).join('') + '])' +
     '([' + vocals[vocal] + '])' +
-    '($|[^' + Object.values(vocals).join('') + '])'
+    '($|[^' + values(vocals).join('') + '])'
 }
 
 function ucfirst(str) {
