@@ -136,12 +136,11 @@ function translate (str) {
 // }
 
 // Code defining custom module consisting of a filter
-// The module needs to be included as dependency for using the filter, titlecase
+// The module needs to be included as dependency for using the filter, anorsk
 angular.module('CustomFilterModule', [])
-  .filter('titlecase', function () {
+  .filter('anorsk', function () {
     return function (input) {
       return input.replace(/\w\S*/g, function (txt) {
-        // return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
         return translate(txt)
       })
     }
@@ -149,7 +148,7 @@ angular.module('CustomFilterModule', [])
 
 // Angular App on this page
 // Included CustomFilterModule as dependency
-angular.module('DiftongApp', ['CustomFilterModule'])
+angular.module('DiftongMaskinen', ['CustomFilterModule'])
   .controller('DiftongCtrl', ['$scope', function ($scope) {
     $scope.name = ''
   }])
